@@ -1,6 +1,7 @@
 package com.example.trafficassistant
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
@@ -15,6 +16,11 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        //intents
+        mapsButtom.setOnClickListener {
+            val mapint = Intent(this, MapsActivity::class.java)
+            startActivity(mapint)
+        }
         // Setup
         val bundle =intent.extras
         val email = bundle?.getString("email")
@@ -40,4 +46,5 @@ class HomeActivity : AppCompatActivity() {
             onBackPressed()
         }
     }
+
 }
