@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TrafficAssistant</string>
+    <string name="prefs_file">com.example.trafficassistant.PREFERENCE_FILE_KEY</string>
+</resources>

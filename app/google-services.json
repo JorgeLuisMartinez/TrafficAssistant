@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "311545321749",
+    "project_id": "trafficassistant-47a24",
+    "storage_bucket": "trafficassistant-47a24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311545321749:android:a21d79f0923b496199711c",
+        "android_client_info": {
+          "package_name": "com.example.trafficassistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "311545321749-3emqq7ves6h471v634gigk1lv3n9srkv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3MBOHgVJ0hk-qgYsMMRUBlvoPx-Wv-G4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "311545321749-3emqq7ves6h471v634gigk1lv3n9srkv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
