@@ -28,7 +28,8 @@
             <LinearLayout
                 android:layout_width="247dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingRight="3dp">
 
                 <TextView
                     android:id="@+id/textViewEmail"
@@ -36,9 +37,11 @@
                     android:layout_height="40dp"
                     android:background="@drawable/boton_redondeado"
                     android:backgroundTint="@color/darkbone"
+                    android:paddingTop="7dp"
                     android:text="Email"
                     android:textAlignment="center"
-                    android:textColor="@color/darkblue" />
+                    android:textColor="@color/darkblue"
+                    android:textSize="18sp" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -50,16 +53,19 @@
                     android:layout_height="40dp"
                     android:background="@drawable/boton_redondeado"
                     android:backgroundTint="@color/darkbone"
+                    android:paddingTop="7dp"
                     android:text="Proveedor"
                     android:textAlignment="center"
-                    android:textColor="@color/darkblue" />
+                    android:textColor="@color/darkblue"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="3dp">
 
                 <Button
                     android:id="@+id/LogOutButton"
