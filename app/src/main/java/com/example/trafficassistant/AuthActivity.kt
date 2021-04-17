@@ -2,10 +2,10 @@ package com.example.trafficassistant
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -23,12 +23,22 @@ class AuthActivity : AppCompatActivity() {
         // Analytics events
         val analytics: FirebaseAnalytics = FirebaseAnalytics.getInstance(this)
         val bundle = Bundle()
-        bundle.putString("message","Integración de firebase completa")
-        analytics.logEvent("InitScreen",bundle)
+        bundle.putString("message", "Integración de firebase completa")
+        analytics.logEvent("InitScreen", bundle)
         //--------------------------------------------------
         //Setup
         setup()
         sesion()
+    }
+
+    override fun onBackPressed() {
+        val Mybuild = AlertDialog.Builder(this)
+        Mybuild.setMessage("Esta seguro que desea salir de la APP")
+        Mybuild.setTitle(":(")
+        Mybuild.setPositiveButton("SI") { dialog, which -> finish() }
+        Mybuild.setNegativeButton("NO") { dialog, which -> dialog.cancel() }
+        val dialog = Mybuild.create()
+        dialog.show()
     }
 
     private fun sesion(){
@@ -44,9 +54,9 @@ class AuthActivity : AppCompatActivity() {
         title = "Autenticación"
         signUpButton.setOnClickListener {
             if (EmailEditText.text.isNotEmpty() && PasswordEditText.text.isNotEmpty()){
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(EmailEditText.text.toString(),PasswordEditText.text.toString()).addOnCompleteListener {
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(EmailEditText.text.toString(), PasswordEditText.text.toString()).addOnCompleteListener {
                     if (it.isSuccessful){
-                        showHome(it.result?.user?.email ?:"", ProviderType.BASIC)
+                        showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
                     }else{
                         showAlert()
                     }
@@ -57,9 +67,9 @@ class AuthActivity : AppCompatActivity() {
 
         loginButton.setOnClickListener {
             if (EmailEditText.text.isNotEmpty() && PasswordEditText.text.isNotEmpty()){
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(EmailEditText.text.toString(),PasswordEditText.text.toString()).addOnCompleteListener {
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(EmailEditText.text.toString(), PasswordEditText.text.toString()).addOnCompleteListener {
                     if (it.isSuccessful){
-                        showHome(it.result?.user?.email ?:"", ProviderType.BASIC)
+                        showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
                     }else{
                         showAlert()
                     }
@@ -75,7 +85,7 @@ class AuthActivity : AppCompatActivity() {
                     .requestEmail()
                     .build()
 
-                val googleClient = GoogleSignIn.getClient(this,googleConf)
+                val googleClient = GoogleSignIn.getClient(this, googleConf)
                 googleClient.signOut()
                 startActivityForResult(googleClient.signInIntent, GOOGLE_SIGN_IN)
         }
@@ -85,15 +95,15 @@ class AuthActivity : AppCompatActivity() {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Error")
             builder.setMessage("Se ha producido un error autenticando al usuario")
-            builder.setPositiveButton("aceptar",null)
+            builder.setPositiveButton("aceptar", null)
             val dialog: AlertDialog = builder.create()
             dialog.show()
     }
 
-    private fun showHome(email: String, proveedor:ProviderType){
-            val HomeIntent = Intent(this,HomeActivity::class.java).apply {
-                putExtra("email",email)
-                putExtra("provider",proveedor.name)
+    private fun showHome(email: String, proveedor: ProviderType){
+            val HomeIntent = Intent(this, HomeActivity::class.java).apply {
+                putExtra("email", email)
+                putExtra("provider", proveedor.name)
             }
             startActivity(HomeIntent)
     }
@@ -110,7 +120,7 @@ class AuthActivity : AppCompatActivity() {
                     val credential = GoogleAuthProvider.getCredential(account.idToken, null)
                     FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
                         if (it.isSuccessful){
-                            showHome(account.email?:"", ProviderType.GOOGLE)
+                            showHome(account.email ?: "", ProviderType.GOOGLE)
                         }else{
                             showAlert()
                         }

@@ -8,6 +8,7 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -24,12 +25,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
     companion object{
         const val REQUEST_CODE_LOCATION = 0
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_AppCompat_Light_NoActionBar)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
         createFragment()
+    }
+    override fun onBackPressed() {
+        val Mybuild = AlertDialog.Builder(this)
+        Mybuild.setMessage("Esta seguro que desea cerrar Maps")
+        Mybuild.setTitle("Salir de mapas")
+        Mybuild.setPositiveButton("SI") { dialog, which -> finish() }
+        Mybuild.setNegativeButton("NO") { dialog, which -> dialog.cancel() }
+        val dialog = Mybuild.create()
+        dialog.show()
     }
 
     private fun createFragment() {

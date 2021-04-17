@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -46,6 +47,16 @@ class HomeActivity : AppCompatActivity() {
             FirebaseAuth.getInstance().signOut()
             onBackPressed()
         }
+    }
+
+    override fun onBackPressed() {
+        val Mybuild = AlertDialog.Builder(this)
+        Mybuild.setMessage("Esta seguro que desea cerrar sesión")
+        Mybuild.setTitle("Cerrar sesion")
+        Mybuild.setPositiveButton("SI") { dialog, which -> finish() }
+        Mybuild.setNegativeButton("NO") { dialog, which -> dialog.cancel() }
+        val dialog = Mybuild.create()
+        dialog.show()
     }
 
 }
