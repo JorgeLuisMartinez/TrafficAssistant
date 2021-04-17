@@ -18,9 +18,10 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".HomeActivity" />
+
+
         <activity
-            android:name=".AuthActivity"
-            android:theme="@style/SplashTheme">
+            android:name=".AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

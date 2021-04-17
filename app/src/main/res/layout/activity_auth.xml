@@ -4,22 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/bone"
     tools:context=".AuthActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="140dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/boton_redondeado"
-        android:backgroundTint="#6C1717"
+        android:backgroundTint="@color/darkbone"
         android:orientation="vertical"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
 
         <EditText
             android:id="@+id/EmailEditText"
@@ -27,23 +34,35 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textAlignment="center"
+            android:textColor="@color/darkblue"
+            android:textColorHighlight="@color/red"
+            android:textColorHint="@color/lightdracula"
+            android:textColorLink="@color/dracula"
+            android:textCursorDrawable="@color/dracula" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="15dp" />
+            android:layout_height="20dp" />
 
         <EditText
             android:id="@+id/PasswordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Password"
-            android:inputType="textPassword" />
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:textAlignment="center"
+            android:textColor="@color/darkblue"
+            android:textColorHighlight="@color/red"
+            android:textColorHint="@color/lightdracula"
+            android:textColorLink="@color/dracula"
+            android:textCursorDrawable="@color/dracula" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="15dp" />
+            android:layout_height="20dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,7 +74,10 @@
                 android:layout_width="167dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Sign Up" />
+                android:background="@drawable/boton_redondeado"
+                android:backgroundTint="@color/darkblue"
+                android:text="Registrarme"
+                android:textColor="@color/bone" />
 
             <Space
                 android:layout_width="8dp"
@@ -67,13 +89,16 @@
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Log In" />
+                android:background="@drawable/boton_redondeado"
+                android:backgroundTint="@color/darkblue"
+                android:text="Iniciar sesión"
+                android:textColor="@color/bone" />
 
         </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="15dp" />
+            android:layout_height="20dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -88,8 +113,26 @@
                 android:scaleType="fitCenter"
                 android:src="@mipmap/google"
                 android:textAlignment="center" />
+
         </LinearLayout>
 
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_weight="1" />
+
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="138dp"
+        android:layout_height="141dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.305"
+        app:srcCompat="@mipmap/logologin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

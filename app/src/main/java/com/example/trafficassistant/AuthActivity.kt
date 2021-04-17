@@ -31,16 +31,6 @@ class AuthActivity : AppCompatActivity() {
         sesion()
     }
 
-    override fun onBackPressed() {
-        val Mybuild = AlertDialog.Builder(this)
-        Mybuild.setMessage("Esta seguro que desea salir de la APP")
-        Mybuild.setTitle(":(")
-        Mybuild.setPositiveButton("SI") { dialog, which -> finish() }
-        Mybuild.setNegativeButton("NO") { dialog, which -> dialog.cancel() }
-        val dialog = Mybuild.create()
-        dialog.show()
-    }
-
     private fun sesion(){
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
         val email = prefs.getString("email", null)

@@ -6,50 +6,103 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <TextView
-        android:id="@+id/textViewEmail"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:text="Email"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="500dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textViewProveedor"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:text="Proveedor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.105" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/LogOutButton"
-        android:layout_width="110dp"
-        android:layout_height="40dp"
-        android:text="Log Out"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.949"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+            <LinearLayout
+                android:layout_width="247dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    <Button
-        android:id="@+id/mapsButtom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
+                <TextView
+                    android:id="@+id/textViewEmail"
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/boton_redondeado"
+                    android:backgroundTint="@color/darkbone"
+                    android:text="Email"
+                    android:textAlignment="center"
+                    android:textColor="@color/darkblue" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <TextView
+                    android:id="@+id/textViewProveedor"
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/boton_redondeado"
+                    android:backgroundTint="@color/darkbone"
+                    android:text="Proveedor"
+                    android:textAlignment="center"
+                    android:textColor="@color/darkblue" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/LogOutButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/boton_redondeado"
+                    android:backgroundTint="@color/red"
+                    android:drawableTop="@drawable/salir"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:text="Cerrar sesión"
+                    android:textColor="@color/bone" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="40dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.714" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <Button
+            android:id="@+id/mapsButtom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/boton_redondeado"
+            android:backgroundTint="@color/orange"
+            android:drawableTop="@drawable/mapa64"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="Ver alertas"
+            android:textAlignment="center"
+            android:textColor="@color/bone" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
