@@ -90,13 +90,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
     ///////// MAPA MAPA MAPA MAPA MAPA MAPA MAPA MAPA
     override fun onMapReady(googleMap: GoogleMap) {
         map=googleMap
+        //MARCADORES
         createMarker()
+        createMarker2()
+        createMarker3()
+        //
         map.setOnMyLocationButtonClickListener(this)
         map.setOnMyLocationClickListener(this)
         enableLocation()
     }
     ////////
-    private fun createMarker2() {
+    private fun createMarkerejemplonormal() {
         val coordinates = LatLng(7.911265, -72.499812)
         val marker = MarkerOptions().position(coordinates).title("Universidad de santander udes, campues cúcuta")
         map.addMarker(marker)
@@ -112,6 +116,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
             CameraUpdateFactory.newLatLngZoom(coordinates, 18f),4000, null
         )
     }
+
+    private fun createMarker2() {
+        val coordinates = LatLng(7.893078, -72.502370)
+        val marker = MarkerOptions().position(coordinates).title("Estadio").icon(BitmapDescriptorFactory.fromResource(R.drawable.dos))
+        map.addMarker(marker)
+    }
+    private fun createMarker3() {
+        val coordinates = LatLng(7.863519, -72.481267)
+        val marker = MarkerOptions().position(coordinates).title("Comida rápida locochón").icon(BitmapDescriptorFactory.fromResource(R.drawable.tres))
+        map.addMarker(marker)
+    }
+
     // FUNCIONES DEL BOTON LOCALIZACION
     override fun onMyLocationButtonClick(): Boolean {
         Toast.makeText(this,"Localización en tiempo real", Toast.LENGTH_SHORT).show()
