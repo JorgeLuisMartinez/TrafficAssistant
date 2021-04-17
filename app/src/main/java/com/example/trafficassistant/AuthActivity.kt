@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -29,6 +30,7 @@ class AuthActivity : AppCompatActivity() {
         setup()
         sesion()
     }
+
     private fun sesion(){
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
         val email = prefs.getString("email", null)
@@ -37,6 +39,7 @@ class AuthActivity : AppCompatActivity() {
             showHome(email, ProviderType.valueOf(proveedor))
         }
     }
+
     private fun setup(){
         title = "Autenticación"
         signUpButton.setOnClickListener {
@@ -49,8 +52,9 @@ class AuthActivity : AppCompatActivity() {
                     }
                 }
 
-                }
             }
+        }
+
         loginButton.setOnClickListener {
             if (EmailEditText.text.isNotEmpty() && PasswordEditText.text.isNotEmpty()){
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(EmailEditText.text.toString(),PasswordEditText.text.toString()).addOnCompleteListener {
@@ -63,6 +67,7 @@ class AuthActivity : AppCompatActivity() {
 
             }
         }
+
         googleSignInButtom.setOnClickListener {
                 //Configuracion de autenticacion
                 val googleConf = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -73,23 +78,25 @@ class AuthActivity : AppCompatActivity() {
                 val googleClient = GoogleSignIn.getClient(this,googleConf)
                 googleClient.signOut()
                 startActivityForResult(googleClient.signInIntent, GOOGLE_SIGN_IN)
-             }
         }
-        private fun showAlert(){
+    }
+
+    private fun showAlert(){
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Error")
             builder.setMessage("Se ha producido un error autenticando al usuario")
             builder.setPositiveButton("aceptar",null)
             val dialog: AlertDialog = builder.create()
             dialog.show()
-        }
-        private fun showHome(email: String, proveedor:ProviderType){
+    }
+
+    private fun showHome(email: String, proveedor:ProviderType){
             val HomeIntent = Intent(this,HomeActivity::class.java).apply {
                 putExtra("email",email)
                 putExtra("provider",proveedor.name)
             }
             startActivity(HomeIntent)
-        }
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -109,7 +116,8 @@ class AuthActivity : AppCompatActivity() {
                         }
                     }
                 }
-            }catch (e:ApiException){
+            }catch (e: ApiException){
+                Log.w("TAG", "Google sign in failed /*/*/*/*/*/*/*/*/*/*////", e)
                 showAlert()
             }
 
