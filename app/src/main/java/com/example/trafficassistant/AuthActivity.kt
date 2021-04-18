@@ -3,9 +3,7 @@ package com.example.trafficassistant
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
-import android.util.Patterns
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -15,8 +13,6 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_auth.*
-import java.util.regex.Pattern
-
 
 class AuthActivity : AppCompatActivity() {
     private val GOOGLE_SIGN_IN = 100
@@ -46,45 +42,31 @@ class AuthActivity : AppCompatActivity() {
 
     private fun setup(){
         title = "Autenticación"
-
-            signUpButton.setOnClickListener {
-                if (EmailEditText.text.isNotEmpty() || PasswordEditText.text.isNotEmpty()) {
-                    if (EmailEditText.text.isNotEmpty() && PasswordEditText.text.isNotEmpty() && validarEmail(EmailEditText.text)) {
-                        FirebaseAuth.getInstance().createUserWithEmailAndPassword(EmailEditText.text.toString(), PasswordEditText.text.toString()).addOnCompleteListener {
-                            if (it.isSuccessful) {
-                                showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
-                            } else {
-                                showAlert()
-                            }
-                        }
-                    } else {
-                        EmailEditText.setError("Email no válido")
+        signUpButton.setOnClickListener {
+            if (EmailEditText.text.isNotEmpty() && PasswordEditText.text.isNotEmpty()){
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(EmailEditText.text.toString(), PasswordEditText.text.toString()).addOnCompleteListener {
+                    if (it.isSuccessful){
+                        showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
+                    }else{
+                        showAlert()
                     }
-                }else{
-                    showAlertcampos()
                 }
+
             }
+        }
 
-            loginButton.setOnClickListener {
-                if (EmailEditText.text.isNotEmpty()|| PasswordEditText.text.isNotEmpty()) {
-                    if (EmailEditText.text.isNotEmpty() && PasswordEditText.text.isNotEmpty() && validarEmail(EmailEditText.text)) {
-                        FirebaseAuth.getInstance().signInWithEmailAndPassword(EmailEditText.text.toString(), PasswordEditText.text.toString()).addOnCompleteListener {
-                            if (it.isSuccessful) {
-                                showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
-                            } else {
-
-                                showAlert()
-                            }
-                        }
-                    } else {
-                        EmailEditText.setError("Email no válido")
+        loginButton.setOnClickListener {
+            if (EmailEditText.text.isNotEmpty() && PasswordEditText.text.isNotEmpty()){
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(EmailEditText.text.toString(), PasswordEditText.text.toString()).addOnCompleteListener {
+                    if (it.isSuccessful){
+                        showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
+                    }else{
+                        showAlert()
                     }
-                }else{
-                    showAlertcampos()
                 }
-            }
 
-        //if (EmailEditText.text.isNotEmpty() || PasswordEditText.text.isNotEmpty())
+            }
+        }
 
         googleSignInButtom.setOnClickListener {
                 //Configuracion de autenticacion
@@ -106,14 +88,6 @@ class AuthActivity : AppCompatActivity() {
             builder.setPositiveButton("aceptar", null)
             val dialog: AlertDialog = builder.create()
             dialog.show()
-    }
-    private fun showAlertcampos(){
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Error")
-        builder.setMessage("Porfavor no deje campos vacios")
-        builder.setPositiveButton("aceptar", null)
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
     }
 
     private fun showHome(email: String, proveedor: ProviderType){
@@ -150,10 +124,4 @@ class AuthActivity : AppCompatActivity() {
         }
 
     }
-    private fun validarEmail(email: Editable): Boolean {
-        val pattern: Pattern = Patterns.EMAIL_ADDRESS
-        return pattern.matcher(email).matches()
-    }
-
-
     }
