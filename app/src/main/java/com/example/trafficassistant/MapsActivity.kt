@@ -103,6 +103,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         createMarker()
         createMarker2()
         createMarker3()
+        val cordeenadasprincipales = LatLng(7.888593, -72.496212)
+        map.animateCamera(
+                CameraUpdateFactory.newLatLngZoom(cordeenadasprincipales, 14f),3000, null
+        )
         //
         map.setOnMyLocationButtonClickListener(this)
         map.setOnMyLocationClickListener(this)
@@ -121,9 +125,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         val coordinates = LatLng(7.911265, -72.499812)
         val marker = MarkerOptions().position(coordinates).title("Universidad de santander udes, campues cúcuta").icon(BitmapDescriptorFactory.fromResource(R.drawable.choque))
         map.addMarker(marker)
-        map.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(coordinates, 18f),4000, null
-        )
     }
 
     private fun createMarker2() {
