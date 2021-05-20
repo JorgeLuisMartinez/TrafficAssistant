@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_home.*
 
 enum class ProviderType{
@@ -14,6 +15,7 @@ enum class ProviderType{
     //hola buenas soy yo
 }
 class HomeActivity : AppCompatActivity() {
+    private val db = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_AppCompat_Light_NoActionBar)
         super.onCreate(savedInstanceState)
@@ -46,6 +48,23 @@ class HomeActivity : AppCompatActivity() {
             //-----------------
             FirebaseAuth.getInstance().signOut()
             onBackPressed()
+        }
+        //// datos base de datos
+        buttonSave.setOnClickListener {
+        db.collection("users").document(email).set(
+            hashMapOf("provider" to proveedor,
+            "address" to textAddress.text.toString(),
+            "phone" to textPhone.text.toString())
+        )
+        }
+        buttonUpdate.setOnClickListener {
+        db.collection("users").document(email).get().addOnSuccessListener {
+            textAddress.setText(it.get("address")as String?)
+            textPhone.setText(it.get("phone")as String?)
+        }
+        }
+        buttonDelete.setOnClickListener {
+        db.collection("users").document(email).delete()
         }
     }
 
