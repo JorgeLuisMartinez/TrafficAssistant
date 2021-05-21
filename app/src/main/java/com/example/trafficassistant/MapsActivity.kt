@@ -2,11 +2,11 @@ package com.example.trafficassistant
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
@@ -15,21 +15,30 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.firestore.FirebaseFirestore
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
+class MapsActivity() : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
+    private var longitud: Double = 0.0
+    private var latitud: Double = 0.0
     private lateinit var map:GoogleMap
+    private val db = FirebaseFirestore.getInstance()
+    private val Lat= ""
+    private val Lon = ""
+
     companion object{
         const val REQUEST_CODE_LOCATION = 0
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_AppCompat_Light_NoActionBar)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
         createFragment()
+
     }
     override fun onBackPressed() {
         val Mybuild = AlertDialog.Builder(this)
@@ -96,21 +105,94 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
     }
     /////////////////
 
+
     ///////// MAPA MAPA MAPA MAPA MAPA MAPA MAPA MAPA
     override fun onMapReady(googleMap: GoogleMap) {
         map=googleMap
+        map.setOnMyLocationButtonClickListener(this)
+        map.setOnMyLocationClickListener(this)
+        enableLocation()
+
         //MARCADORES
         createMarker()
         createMarker2()
         createMarker3()
+
+        //lat - long - titulo - tipoaAlerta
+
+        val fab1: View = findViewById(R.id.idFabAccidente)
+        fab1.setOnClickListener { view ->
+            Snackbar.make(view, "Se Registro el Accidente", Snackbar.LENGTH_LONG)
+                .setAction("Action", null)
+                .show()
+
+            val data = hashMapOf(
+                "Latitud" to latitud,
+                "Longitud" to longitud,
+                "TipoAlerta" to "Accidente",
+                "Titulo" to "Accidente de Transito"
+            )
+
+            db.collection("Alertas")
+                .add(data)
+                .addOnSuccessListener { documentReference ->
+                    Log.d("Registro Exitoso", "DocumentSnapshot written with ID: ${documentReference.id}")
+                }
+                .addOnFailureListener { e ->
+                    Log.w("Registro Fallido", "Error adding document", e)
+                }
+        }
+
+        val fab2: View = findViewById(R.id.idFabObra)
+        fab2.setOnClickListener { view ->
+            Snackbar.make(view, "Se Registro Obra en la Vía", Snackbar.LENGTH_LONG)
+                .setAction("Action", null)
+                .show()
+
+            val data = hashMapOf(
+                "Latitud" to latitud,
+                "Longitud" to longitud,
+                "TipoAlerta" to "Obra",
+                "Titulo" to "Obra en la Vía"
+            )
+
+            db.collection("Alertas")
+                .add(data)
+                .addOnSuccessListener { documentReference ->
+                    Log.d("Registro Exitoso", "DocumentSnapshot written with ID: ${documentReference.id}")
+                }
+                .addOnFailureListener { e ->
+                    Log.w("Registro Fallido", "Error adding document", e)
+                }
+        }
+
+        val fab3: View = findViewById(R.id.idFabSemaforo)
+        fab3.setOnClickListener { view ->
+            Snackbar.make(view, "Se Registro Semaforo Averiado", Snackbar.LENGTH_LONG)
+                .setAction("Action", null)
+                .show()
+
+            val data = hashMapOf(
+                "Latitud" to latitud,
+                "Longitud" to longitud,
+                "TipoAlerta" to "Semaforo",
+                "Titulo" to "Semaforo Averiado"
+            )
+
+            db.collection("Alertas")
+                .add(data)
+                .addOnSuccessListener { documentReference ->
+                    Log.d("Registro Exitoso", "DocumentSnapshot written with ID: ${documentReference.id}")
+                }
+                .addOnFailureListener { e ->
+                    Log.w("Registro Fallido", "Error adding document", e)
+                }
+        }
+
         val cordeenadasprincipales = LatLng(7.888593, -72.496212)
         map.animateCamera(
-                CameraUpdateFactory.newLatLngZoom(cordeenadasprincipales, 14f),3000, null
+            CameraUpdateFactory.newLatLngZoom(cordeenadasprincipales, 14f),3000, null
         )
-        //
-        map.setOnMyLocationButtonClickListener(this)
-        map.setOnMyLocationClickListener(this)
-        enableLocation()
     }
     ////////
     private fun createMarkerejemplonormal() {
@@ -145,6 +227,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
     }
 
     override fun onMyLocationClick(p0: Location) {
+        latitud = p0.latitude
+        longitud = p0.longitude
+        Log.d("Registro Exitoso", "*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*")
         Toast.makeText(this,"Estas en ${p0.latitude}, ${p0.longitude}",Toast.LENGTH_SHORT).show()
     }
 }
