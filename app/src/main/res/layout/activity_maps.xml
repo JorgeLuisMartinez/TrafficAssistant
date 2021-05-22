@@ -1,9 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapsActivity"/>
+    android:background="@color/bone"
+    tools:context=".MapsActivity">
 
+       <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/idgroupButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="-8dp"
+        app:fab_addButtonColorNormal="@color/red"
+        app:fab_addButtonColorPressed="@color/orange"
+        app:fab_labelStyle="@drawable/new64">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/idFabAccidente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/orangelight"
+            app:fab_colorPressed="@color/bone"
+            app:fab_icon="@drawable/accidente64"
+            app:fab_stroke_visible="true"
+            app:fab_size="mini"
+            app:fab_title="Reportar Accidente"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/idFabObra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/orangelight"
+            app:fab_colorPressed="@color/bone"
+            app:fab_icon="@drawable/obra64"
+            app:fab_stroke_visible="true"
+            app:fab_size="mini"
+            app:fab_title="Reportar Obra en la vía"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/idFabSemaforo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/orangelight"
+            app:fab_colorPressed="@color/bone"
+            app:fab_icon="@drawable/semaforo64"
+            app:fab_stroke_visible="true"
+            app:fab_size="mini"
+            app:fab_title="Reportar Semaforo"/>
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+</RelativeLayout>
