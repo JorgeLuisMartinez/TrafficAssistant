@@ -294,6 +294,7 @@ class MapsActivity() : AppCompatActivity(), OnMapReadyCallback,
                         LongitudRT as Double,
                         Tipo as String,
                         Titulo as String
+
                     )
                 }
             }
