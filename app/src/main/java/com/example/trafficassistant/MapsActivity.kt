@@ -2,25 +2,29 @@ package com.example.trafficassistant
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_home.*
+
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
+    private val db = FirebaseFirestore.getInstance()
     private lateinit var map:GoogleMap
     companion object{
         const val REQUEST_CODE_LOCATION = 0
@@ -47,7 +51,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
     }
 
     private fun isLocationPermissionGranted() = ContextCompat.checkSelfPermission(
-        this, Manifest.permission.ACCESS_FINE_LOCATION
+            this, Manifest.permission.ACCESS_FINE_LOCATION
     ) == PackageManager.PERMISSION_GRANTED
 
     private fun enableLocation (){
@@ -63,24 +67,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
 
     private fun requestLocationPermission (){
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)){
-            Toast.makeText(this,"Ve a ajustes y acepta los permisos", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Ve a ajustes y acepta los permisos", Toast.LENGTH_SHORT).show()
         }else{
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                REQUEST_CODE_LOCATION )
+                    REQUEST_CODE_LOCATION)
         }
     }
 
     //////////////////
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
+            requestCode: Int,
+            permissions: Array<out String>,
+            grantResults: IntArray
     ) {
         when(requestCode){
-            REQUEST_CODE_LOCATION -> if (grantResults.isNotEmpty() && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+            REQUEST_CODE_LOCATION -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 map.isMyLocationEnabled = true
-            }else{
-                Toast.makeText(this,"Para activar la localización ve a ajustes y acepta los permisos", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Para activar la localización ve a ajustes y acepta los permisos", Toast.LENGTH_SHORT).show()
             }
             else -> {}
         }
@@ -91,7 +95,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         if (!::map.isInitialized) return
         if (!isLocationPermissionGranted()){
             map.isMyLocationEnabled = false
-            Toast.makeText(this,"Para activar la localización ve a ajustes y acepta los permisos", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Para activar la localización ve a ajustes y acepta los permisos", Toast.LENGTH_SHORT).show()
         }
     }
     /////////////////
@@ -105,7 +109,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         createMarker3()
         val cordeenadasprincipales = LatLng(7.888593, -72.496212)
         map.animateCamera(
-                CameraUpdateFactory.newLatLngZoom(cordeenadasprincipales, 14f),3000, null
+                CameraUpdateFactory.newLatLngZoom(cordeenadasprincipales, 14f), 3000, null
         )
         //
         map.setOnMyLocationButtonClickListener(this)
@@ -118,7 +122,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
         val marker = MarkerOptions().position(coordinates).title("Universidad de santander udes, campues cúcuta")
         map.addMarker(marker)
         map.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(coordinates, 18f),4000, null
+                CameraUpdateFactory.newLatLngZoom(coordinates, 18f), 4000, null
         )
     }
     private fun createMarker() {
@@ -140,11 +144,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
 
     // FUNCIONES DEL BOTON LOCALIZACION
     override fun onMyLocationButtonClick(): Boolean {
-        Toast.makeText(this,"Localización en tiempo real", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Localización en tiempo real", Toast.LENGTH_SHORT).show()
         return false
     }
 
     override fun onMyLocationClick(p0: Location) {
-        Toast.makeText(this,"Estas en ${p0.latitude}, ${p0.longitude}",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Estas en ${p0.latitude}, ${p0.longitude}", Toast.LENGTH_SHORT).show()
     }
 }

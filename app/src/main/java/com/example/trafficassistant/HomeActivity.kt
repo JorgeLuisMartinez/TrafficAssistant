@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -51,20 +52,44 @@ class HomeActivity : AppCompatActivity() {
         }
         //// datos base de datos
         buttonSave.setOnClickListener {
-        db.collection("users").document(email).set(
+            db.collection("users").document(email).set(
             hashMapOf("provider" to proveedor,
-            "address" to textAddress.text.toString(),
+            "name" to textName.text.toString(),
+            "lastName" to textLastName.text.toString(),
+            "carNumber" to textNumber.text.toString(),
             "phone" to textPhone.text.toString())
         )
+            textName.setText("")
+            textLastName.setText("")
+            textNumber.setText("")
+            textPhone.setText("")
+            textName.setEnabled(false)
+            textLastName.setEnabled(false)
+            textNumber.setEnabled(false)
+            textPhone.setEnabled(false)
         }
         buttonUpdate.setOnClickListener {
         db.collection("users").document(email).get().addOnSuccessListener {
-            textAddress.setText(it.get("address")as String?)
+            textName.setText(it.get("name")as String?)
+            textLastName.setText(it.get("lastName")as String?)
+            textNumber.setText(it.get("carNumber")as String?)
             textPhone.setText(it.get("phone")as String?)
         }
+            textName.setEnabled(true)
+            textLastName.setEnabled(true)
+            textNumber.setEnabled(true)
+            textPhone.setEnabled(true)
         }
         buttonDelete.setOnClickListener {
         db.collection("users").document(email).delete()
+            textName.setText("")
+            textLastName.setText("")
+            textNumber.setText("")
+            textPhone.setText("")
+            textName.setEnabled(true)
+            textLastName.setEnabled(true)
+            textNumber.setEnabled(true)
+            textPhone.setEnabled(true)
         }
     }
 

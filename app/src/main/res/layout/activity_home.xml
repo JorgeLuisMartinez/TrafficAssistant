@@ -17,132 +17,169 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="433dp"
+            android:orientation="vertical"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp">
 
-            <LinearLayout
-                android:layout_width="247dp"
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <ImageButton
+                android:id="@+id/LogOutButton"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingRight="3dp">
+                android:layout_marginLeft="335dp"
+                android:background="@drawable/boton_redondeado"
+                android:backgroundTint="@color/red"
+                android:paddingLeft="20dp"
+                android:paddingTop="2dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="2dp"
+                android:src="@drawable/salir"
+                android:textAlignment="center"
+                android:textColor="@color/bone" />
 
-                <TextView
-                    android:id="@+id/textViewEmail"
-                    android:layout_width="250dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/boton_redondeado"
-                    android:backgroundTint="@color/darkbone"
-                    android:paddingTop="7dp"
-                    android:text="Email"
-                    android:textAlignment="center"
-                    android:textColor="@color/darkblue"
-                    android:textSize="18sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
+            <TextView
+                android:id="@+id/textViewEmail"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/boton_redondeado"
+                android:backgroundTint="@color/darkbone"
+                android:paddingTop="5dp"
+                android:text="Email"
+                android:textAlignment="center"
+                android:textColor="@color/darkblue"
+                android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/textViewProveedor"
-                    android:layout_width="250dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/boton_redondeado"
-                    android:backgroundTint="@color/darkbone"
-                    android:paddingTop="7dp"
-                    android:text="Proveedor"
-                    android:textAlignment="center"
-                    android:textColor="@color/darkblue"
-                    android:textSize="18sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
+            <TextView
+                android:id="@+id/textViewProveedor"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/boton_redondeado"
+                android:backgroundTint="@color/darkbone"
+                android:paddingTop="5dp"
+                android:text="Proveedor"
+                android:textAlignment="center"
+                android:textColor="@color/darkblue"
+                android:textSize="18sp" />
 
-                <EditText
-                    android:id="@+id/textAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/boton_redondeado"
-                    android:backgroundTint="@color/darkbone"
-                    android:hint="Calle, Numero, Piso"
-                    android:paddingTop="7dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/darkblue"
-                    android:textSize="18sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
+            <EditText
+                android:id="@+id/textName"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/boton_redondeado"
+                android:backgroundTint="@color/darkbone"
+                android:hint="Nombre"
+                android:textAlignment="center"
+                android:textColor="@color/darkblue"
+                android:textSize="18sp" />
 
-                <EditText
-                    android:id="@+id/textPhone"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/boton_redondeado"
-                    android:backgroundTint="@color/darkbone"
-                    android:hint="Telefono"
-                    android:paddingTop="7dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/darkblue"
-                    android:textSize="18sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
-            </LinearLayout>
+            <EditText
+                android:id="@+id/textLastName"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/boton_redondeado"
+                android:backgroundTint="@color/darkbone"
+                android:hint="Apeliido"
+                android:textAlignment="center"
+                android:textColor="@color/darkblue"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <EditText
+                android:id="@+id/textNumber"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/boton_redondeado"
+                android:backgroundTint="@color/darkbone"
+                android:hint="Numero de placa "
+                android:textAlignment="center"
+                android:textColor="@color/darkblue"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <EditText
+                android:id="@+id/textPhone"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/boton_redondeado"
+                android:backgroundTint="@color/darkbone"
+                android:hint="Telefono"
+                android:textAlignment="center"
+                android:textColor="@color/darkblue"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingLeft="3dp">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/LogOutButton"
-                    android:layout_width="match_parent"
+                    android:id="@+id/buttonSave"
+                    android:layout_width="122dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/boton_redondeado"
                     android:backgroundTint="@color/red"
-                    android:drawableTop="@drawable/salir"
-                    android:paddingTop="15dp"
-                    android:paddingBottom="15dp"
-                    android:text="Cerrar sesión"
+                    android:text="Guardar"
+                    android:textColor="@color/bone" />
+
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent" />
+
+                <Button
+                    android:id="@+id/buttonUpdate"
+                    android:layout_width="122dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/boton_redondeado"
+                    android:backgroundTint="@color/red"
+                    android:text="Recuperar"
+                    android:textColor="@color/bone" />
+
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent" />
+
+                <Button
+                    android:id="@+id/buttonDelete"
+                    android:layout_width="122dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/boton_redondeado"
+                    android:backgroundTint="@color/red"
+                    android:text="Eliminar"
                     android:textColor="@color/bone" />
 
             </LinearLayout>
+
         </LinearLayout>
-
-        <Button
-            android:id="@+id/buttonSave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/red"
-            android:text="Guardar"
-            android:background="@drawable/boton_redondeado"
-            android:textColor="@color/bone" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
-        <Button
-            android:id="@+id/buttonUpdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/red"
-            android:text="Recuperar"
-            android:background="@drawable/boton_redondeado"
-            android:textColor="@color/bone" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
-        <Button
-            android:id="@+id/buttonDelete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/red"
-            android:text="Eliminar"
-            android:background="@drawable/boton_redondeado"
-            android:textColor="@color/bone" />
 
     </LinearLayout>
 
@@ -168,6 +205,7 @@
             android:text="Ver alertas"
             android:textAlignment="center"
             android:textColor="@color/bone" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
