@@ -220,18 +220,18 @@ class MapsActivity() : AppCompatActivity(), OnMapReadyCallback,
                 for (dc in snapshots!!.documentChanges) {
                     when (dc.type) {
                         DocumentChange.Type.ADDED -> {
-                            Log.d("TAG", "New city: ${dc.document.data}")
+                            //Log.d("TAG", "New city: ${dc.document.data}")
                             val latitudRT = dc.document.data.get("Latitud")
                             val LongitudRT = dc.document.data.get("Longitud")
                             val Tipo = dc.document.data.get("TipoAlerta")
                             val Titulo = dc.document.data.get("Titulo")
-                            Log.d(
+                            /*Log.d(
                                 "Datossssss: ", "latitudRT: ${latitudRT}" +
                                         "LongitudRT: ${LongitudRT}" +
                                         "Tipo: ${Tipo}" +
                                         "Titulo: ${Titulo}" +
                                         "-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*"
-                            )
+                            )*/
                             createMarkereTimeR(
                                 latitudRT as Double,
                                 LongitudRT as Double,
@@ -277,18 +277,18 @@ class MapsActivity() : AppCompatActivity(), OnMapReadyCallback,
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    Log.d("TAG", "${document.id} => ${document.data}")
+                    //Log.d("TAG", "${document.id} => ${document.data}")
                     val latitudRT = document.data.get("Latitud")
                     val LongitudRT = document.data.get("Longitud")
                     val Tipo = document.data.get("TipoAlerta")
                     val Titulo = document.data.get("Titulo")
-                    Log.d(
+                    /*Log.d(
                         "Datossssss INICIALES: ", "latitudRT: ${latitudRT}" +
                                 "LongitudRT: ${LongitudRT}" +
                                 "Tipo: ${Tipo}" +
                                 "Titulo: ${Titulo}" +
                                 "-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*"
-                    )
+                    )*/
                     createMarkereTimeR(
                         latitudRT as Double,
                         LongitudRT as Double,
@@ -315,11 +315,11 @@ class MapsActivity() : AppCompatActivity(), OnMapReadyCallback,
     ) {
         val coordinates = LatLng(latitudRT, LongitudRT)
         var icono = 0
-        if (Tipo.equals("Accidente")) {
+        if (Tipo == "Accidente") {
             icono = (R.drawable.choque)
-        } else if (Tipo.equals("Obra")) {
+        } else if (Tipo == "Obra") {
             icono = (R.drawable.dos)
-        } else if (Tipo.equals("Semaforo")) {
+        } else if (Tipo == "Semaforo") {
             icono = (R.drawable.tres)
         }
         val marker = MarkerOptions().position(coordinates).title(Titulo)
